@@ -1,0 +1,21 @@
+version: '3.4'
+  
+services:
+  gateway:
+    image: nginx
+    restart: always
+    ports:
+      - $NGINX_LISTEN:80
+    volumes:
+      - ./010-scrapper.conf:/etc/nginx/conf.d/010-scrapper.conf
+      - ./files/public/:/var/www/scrapper/files/public
+
+  scrapper:
+    image: sredni/promo-scrapper:0.0.2
+    restart: always
+    volumes:
+      - ./files:/var/www/scrapper/files
+    environment:
+      SCRAPPER_DEBUG: $SCRAPPER_DEBUG
+      SCRAPPER_TEMPORARY_PATH: $SCRAPPER_TEMPORARY_PATH
+      SCRAPPER_PERSISTENT_PATH: $SCRAPPER_PERSISTENT_PATH
