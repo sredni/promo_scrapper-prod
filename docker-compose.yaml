@@ -11,7 +11,7 @@ services:
       - ./files/public/:/var/www/scrapper/files/public
 
   scrapper:
-    image: sredni/promo-scrapper:0.0.2
+    image: sredni/promo-scrapper:0.0.3
     restart: always
     volumes:
       - ./files:/var/www/scrapper/files
